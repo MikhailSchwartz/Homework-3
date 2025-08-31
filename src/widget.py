@@ -1,4 +1,4 @@
-from masks import account_number, ddcard_number
+from masks import get_mask_card_number, get_mask_account
 
 
 def mask_account_card(account_details: str) -> str:
@@ -14,3 +14,8 @@ def mask_account_card(account_details: str) -> str:
             type.append(element)
         if element.isdigit():
             number.append(element)
+
+    if "счет" or "счёт" in type:
+        return f"{type} {get_mask_account(str(number))}"
+
+    return f"{' '.join(type)} {get_mask_card_number(str(number))}"
