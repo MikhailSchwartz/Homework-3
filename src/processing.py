@@ -1,11 +1,11 @@
-def filter_by_state(processing_list: list, state: str = "EXECUTED") -> list:
-    """Функция возвращает новый список словарей, содержащий только те словари, у которых ключ state (по умолчанию
-    'EXECUTED') соответствует указанному значению."""
+def filter_by_state(bank_processing_list: list, state: str = "EXECUTED") -> list:
+    """Функция принимает список словарей с банковскими операциями и возвращает новый список словарей,
+    содержащий только те словари, у которых ключ state (по умолчанию 'EXECUTED') соответствует указанному значению."""
 
-    processing_list_filtred = []
+    bank_processing_list_filtred = []
 
-    for processing in processing_list:
+    for processing in bank_processing_list:
         if processing.get("state") == state:
-            processing_list_filtred.append(operation)
+            bank_processing_list_filtred.append(processing)
 
-    return processing_list_filtred
+    return bank_processing_list_filtred
