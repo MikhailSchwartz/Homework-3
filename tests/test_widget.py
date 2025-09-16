@@ -61,7 +61,7 @@ def test_get_date_invalid_formats(invalid_format_date):
     assert str(exc_info.value) == "Некорректный формат даты."
 
 
-@pytest.mark.parametrize("incorrect_date", [("0999-03-11T02:26:18"), ("3000-03-11T02:26:18"), ("0000-03-11T02:26:18")])
+@pytest.mark.parametrize("incorrect_date", ["0999-03-11T02:26:18", "2010-32-11T02:26:18", "0000-03-11T02:26:18"])
 def test_get_date_incorrect_dates(incorrect_date):
     """Тест обработки при вводе некорректных дат"""
     with pytest.raises(ValueError) as exc_info:

@@ -33,7 +33,7 @@ def get_date(data_and_time: str) -> str:
 
     data_and_time = data_and_time.strip()
 
-    if 'T' not in data_and_time:
+    if "T" not in data_and_time:
         raise ValueError("Строка не содержит даты в формате ISO 8601.")
 
     position_t = data_and_time.index("T")
@@ -49,7 +49,9 @@ def get_date(data_and_time: str) -> str:
 
     if 1000 < int(year) < 3000 and 1 <= int(month) <= 12 and 1 <= int(day) <= 31:
         return f"{day}.{month}.{year}"
+
     raise ValueError("Некорректная дата")
+
 
 if __name__ == "__main__":
     print(mask_account_card("Visa Platinum 7000 7922 8960 6000"))
