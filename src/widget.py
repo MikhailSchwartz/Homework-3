@@ -33,14 +33,25 @@ def get_date(data_and_time: str) -> str:
 
     data_and_time = data_and_time.strip()
 
-    year = data_and_time[0:4]
-    month = data_and_time[5:7]
-    day = data_and_time[8:10]
+    if 'T' not in data_and_time:
+        raise ValueError("Строка не содержит даты в формате ISO 8601.")
 
-    return f"{day}.{month}.{year}"
+    position_t = data_and_time.index("T")
 
+    data_info = data_and_time[:position_t]
+
+    if len(data_info) != 10:
+        raise ValueError("Некорректный формат даты.")
+
+    year = data_info[0:4]
+    month = data_info[5:7]
+    day = data_info[8:10]
+
+    if 1000 < int(year) < 3000 and 1 <= int(month) <= 12 and 1 <= int(day) <= 31:
+        return f"{day}.{month}.{year}"
+    raise ValueError("Некорректная дата")
 
 if __name__ == "__main__":
-    print(mask_account_card("Visa Platinum 7000792289606360"))
+    print(mask_account_card("Visa Platinum 7000 7922 8960 6000"))
     print(mask_account_card("счёт 44444"))
-    print(get_date("2024-03-11T02:26:18.671407"))
+    print(get_date("2024-12-31T02:26:18.671407"))
