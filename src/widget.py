@@ -15,6 +15,9 @@ def mask_account_card(account_details: str) -> str:
         elif element.isdigit():
             numbers.append(element)
 
+    if not numbers or not types:
+        raise ValueError("Неполные данные о карте или счёте.")
+
     numbers_str = "".join(numbers)
     types_str = " ".join(types)
 
@@ -38,6 +41,6 @@ def get_date(data_and_time: str) -> str:
 
 
 if __name__ == "__main__":
-    print(mask_account_card("Visa Platinum 7000792289606361"))
-    print(mask_account_card("счёт 7000792289606361"))
+    print(mask_account_card("Visa Platinum 7000792289606360"))
+    print(mask_account_card("счёт 44444"))
     print(get_date("2024-03-11T02:26:18.671407"))
