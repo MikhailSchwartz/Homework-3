@@ -1,5 +1,6 @@
 import pytest
-from src.widget import mask_account_card, get_date
+
+from src.widget import get_date, mask_account_card
 
 
 @pytest.mark.parametrize(
@@ -13,7 +14,7 @@ from src.widget import mask_account_card, get_date
         ("  Счет  73654108430135874305  ", "Счет **4305"),
     ],
 )
-def test_mask_account_card_valid(valid_input, expected):
+def test_mask_account_card_valid(valid_input: str, expected: str) -> None:
     """Тестирование при вводе корректных данных"""
     assert mask_account_card(valid_input) == expected
 
@@ -21,7 +22,7 @@ def test_mask_account_card_valid(valid_input, expected):
 @pytest.mark.parametrize(
     "invalid_input", ["", "Visa Platinum", "1234567812345678", "Invalid Input", "   ", "Visa1234567812345678", "Счёт"]
 )
-def test_mask_account_card_invalid_inputs(invalid_input):
+def test_mask_account_card_invalid_inputs(invalid_input: str) -> None:
     """Тест обработки при вводе некорректных данных"""
     with pytest.raises(ValueError) as exc_info:
         mask_account_card(invalid_input)
@@ -40,12 +41,12 @@ def test_mask_account_card_invalid_inputs(invalid_input):
         ("  2024-03-11T02:26:18.671407  ", "11.03.2024"),
     ],
 )
-def test_get_date_valid_format(input_date, expected):
+def test_get_date_valid_format(input_date: str, expected: str) -> None:
     """Тест преобразования при вводе корректных дат в формате ISO 8601"""
     assert get_date(input_date) == expected
 
 
-def test_get_date_invalid_format(invalid_data_iso):
+def test_get_date_invalid_format(invalid_data_iso: str) -> None:
     with pytest.raises(ValueError) as exc_info:
         get_date(invalid_data_iso)
 
@@ -53,7 +54,7 @@ def test_get_date_invalid_format(invalid_data_iso):
 
 
 @pytest.mark.parametrize("invalid_format_date", ["2024-03-1T02:26:18", "2024-3-11T02:26:18", "24-03-11T02:26:18"])
-def test_get_date_invalid_formats(invalid_format_date):
+def test_get_date_invalid_formats(invalid_format_date: str) -> None:
     """Тест обработки при вводе некорректных форматов дат"""
     with pytest.raises(ValueError) as exc_info:
         get_date(invalid_format_date)
@@ -62,7 +63,7 @@ def test_get_date_invalid_formats(invalid_format_date):
 
 
 @pytest.mark.parametrize("incorrect_date", ["0999-03-11T02:26:18", "2010-32-11T02:26:18", "0000-03-11T02:26:18"])
-def test_get_date_incorrect_dates(incorrect_date):
+def test_get_date_incorrect_dates(incorrect_date: str) -> None:
     """Тест обработки при вводе некорректных дат"""
     with pytest.raises(ValueError) as exc_info:
         get_date(incorrect_date)

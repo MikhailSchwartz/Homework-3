@@ -1,5 +1,6 @@
 import pytest
-from src.masks import get_mask_card_number, get_mask_account
+
+from src.masks import get_mask_account, get_mask_card_number
 
 
 @pytest.mark.parametrize(
@@ -10,7 +11,7 @@ from src.masks import get_mask_card_number, get_mask_account
         ("7000 7922 8960 6361", "7000 79** **** 6361"),
     ],
 )
-def test_get_mask_card_number_valid(card_number, expected):
+def test_get_mask_card_number_valid(card_number: str | int, expected: str) -> None:
     """Тестирование при вводе корректных номеров карт"""
     assert get_mask_card_number(card_number) == expected
 
@@ -24,7 +25,7 @@ def test_get_mask_card_number_valid(card_number, expected):
         "",
     ],
 )
-def test_get_mask_card_number_invalid(invalid_card):
+def test_get_mask_card_number_invalid(invalid_card: str | int) -> None:
     """Тестирование при вводе некорректных номеров"""
     with pytest.raises(ValueError) as exc_info:
         get_mask_card_number(invalid_card)
@@ -41,13 +42,13 @@ def test_get_mask_card_number_invalid(invalid_card):
         ("7365 4108 4301 3587 4305", "**4305"),
     ],
 )
-def test_get_mask_account_valid(account_number, expected):
+def test_get_mask_account_valid(account_number: str | int, expected: str) -> None:
     """Тестирование при вводе корректных номеров счетов"""
     assert get_mask_account(account_number) == expected
 
 
 @pytest.mark.parametrize("invalid_account_number", ["7365-4108-4301-3587-4305", "account", "     ", ""])
-def test_get_mask_account_invalid_chars(invalid_account_number):
+def test_get_mask_account_invalid_chars(invalid_account_number: str | int) -> None:
     """Тестирование при вводе номеров счетов с недопустимыми символами"""
     with pytest.raises(ValueError) as exc_info:
         get_mask_account(invalid_account_number)
@@ -56,7 +57,7 @@ def test_get_mask_account_invalid_chars(invalid_account_number):
 
 
 @pytest.mark.parametrize("short_account_number", ["763", "76", "7"])
-def test_get_mask_account_short_number(short_account_number):
+def test_get_mask_account_short_number(short_account_number: str | int) -> None:
     """Тестирование при вводе коротких номеров счетов"""
     with pytest.raises(ValueError) as exc_info:
         get_mask_account(short_account_number)

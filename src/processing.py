@@ -1,17 +1,17 @@
-def filter_by_state(banking_oprtations: list, state: str = "EXECUTED") -> list:
+def filter_by_state(banking_operations: list, state: str = "EXECUTED") -> list:
     """Функция принимает список словарей с банковскими операциями и возвращает новый список словарей,
     содержащий только те словари, у которых ключ state (по умолчанию 'EXECUTED') соответствует указанному значению."""
 
-    filtered_banking_operanions = []
+    filtered_banking_operations = []
 
-    for operation in banking_oprtations:
+    for operation in banking_operations:
         if operation.get("state") == state:
-            filtered_banking_operanions.append(operation)
+            filtered_banking_operations.append(operation)
 
-    if len(filtered_banking_operanions) == 0:
-        return f"Операции со статусом {state} отсутствуют"
+    if len(filtered_banking_operations) == 0:
+        raise ValueError(f"Операции со статусом {state} отсутствуют")
 
-    return filtered_banking_operanions
+    return filtered_banking_operations
 
 
 def sort_by_date(banking_operations: list, order: bool = True) -> list:
@@ -30,4 +30,4 @@ if __name__ == "__main__":
         {"id": 594226727, "state": "CANCELED", "date": "2018-06-30T21:27:25.241689"},
         {"id": 615064591, "state": "CANCELED", "date": "2018-06-30T08:21:33.419441"},
     ]
-    print(sort_by_date(bank))
+    print(filter_by_state(bank, state="kkk"))
