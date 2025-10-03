@@ -30,4 +30,4 @@ if __name__ == "__main__":
         {"id": 594226727, "state": "CANCELED", "date": "2018-06-30T21:27:25.241689"},
         {"id": 615064591, "state": "CANCELED", "date": "2018-06-30T08:21:33.419441"},
     ]
-    print(filter_by_state(bank, state="kkk"))
+    print(filter_by_state(bank, "EXECUTED"))
