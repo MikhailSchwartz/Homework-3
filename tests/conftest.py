@@ -276,3 +276,27 @@ def normal_result_filter_by_currency_rub() -> list:
             "to": "Счет 14211924144426031657",
         },
     ]
+
+
+@pytest.fixture()
+def defective_result_filter_by_currency_usd() -> list:
+    """Фикстура с результатом работы функции при вводе неполных данных и типом валюты USD"""
+    return [
+        {
+            "id": 939719570,
+            "state": "EXECUTED",
+            "date": "2018-06-30T02:08:58.425572",
+            "operationAmount": {"amount": "9824.07", "currency": {"name": "USD", "code": "USD"}},
+            "from": "Счет 75106830613657916952",
+            "to": "Счет 11776614605963066702",
+        },
+        {
+            "id": 895315941,
+            "state": "EXECUTED",
+            "date": "2018-08-19T04:27:37.904916",
+            "operationAmount": {"amount": "56883.54", "currency": {"name": "USD", "code": "USD"}},
+            "description": "Перевод с карты на карту",
+            "from": "Visa Classic 6831982476737658",
+            "to": "Visa Platinum 8990922113665229",
+        },
+    ]
