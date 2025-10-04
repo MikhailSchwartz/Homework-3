@@ -112,6 +112,7 @@ def test_transaction_descriptions_wrong(wrong_translation_tuple: tuple) -> None:
 )
 def test_card_number_generator_ranges(start: int, stop: int, expected_first: str, expected_last: str) -> None:
     """Тестирование корректности начальных и конечных номеров"""
+
     gen = card_number_generator(start, stop)
     result = list(gen)
     assert result[0] == expected_first
@@ -122,6 +123,7 @@ def test_card_number_generator_value_error_start() -> None:
     """Тестирование при вводе начального значения меньше еденици"""
     with pytest.raises(ValueError) as exc_info:
         list(card_number_generator(0, 10))
+
     assert str(exc_info.value) == "Начальное значение не может быть меньше 1"
 
 
@@ -129,6 +131,7 @@ def test_card_number_generator_value_error_max() -> None:
     """Тестирование при вводе конечного значения больше 9999999999999999"""
     with pytest.raises(ValueError) as exc_info:
         list(card_number_generator(1, 10000000000000000))
+
     assert str(exc_info.value) == "Конечное значение не может быть больше 9999999999999999"
 
 
@@ -136,6 +139,7 @@ def test_card_number_generator_value_error_stop() -> None:
     """Тестирование при вводе stop меньше start"""
     with pytest.raises(ValueError) as exc_info:
         list(card_number_generator(10, 5))
+
     assert str(exc_info.value) == "Значение stop значение не может быть меньше значения start"
 
 
@@ -148,5 +152,6 @@ def test_card_number_generator_value_error_stop() -> None:
 )
 def test_card_number_generator_single_and_two_numbers(start: int, stop: int, expected_len: int) -> None:
     """Тест проверяет генерацию одного и двух номеров карт при указании диапазона"""
+
     numbers = list(card_number_generator(start, stop))
     assert len(numbers) == expected_len
