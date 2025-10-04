@@ -23,7 +23,7 @@ def filter_by_currency(transactions: list, currency: str) -> None:
     except Exception as e:
         yield (
             f"Произошла ошибка: {e}. Функция должна принимать на вход два аргумента: список со словарями и информацию"
-            f" о валюте "
+            f" о валюте"
         )
 
 
@@ -34,15 +34,20 @@ def transaction_descriptions(transactions: list) -> None:
         yield "Данные отсутствуют"
         return
 
-    try:
-        for transaction in transactions:
-            if "description" in transaction:
-                yield transaction["description"]
-            else:
-                yield "Информации об операции недостаточно"
+    if not isinstance(transactions, list):
+        yield "Некорректный тип данных: ожидается список"
+        return
 
-    except Exception as e:
-        yield f"Произошла ошибка: {e}. Введённые данные должен быть в формате список со словарями"
+
+    for transaction in transactions:
+        if not isinstance(transaction, dict):
+            yield f"Некорректный тип данных элемента списка транзакций"
+            continue
+
+        if "description" in transaction:
+            yield transaction["description"]
+        else:
+            yield "Информации об операции недостаточно"
 
 
 def card_number_generator(start: int, stop: int) -> str:
@@ -183,21 +188,19 @@ if __name__ == "__main__":
             "to": "Счет 14211924144426031657",
         }
     ]
+    transactions6 = ("ghbdtn")
 
     try:
-        usd_transactions = transaction_descriptions(transactions5)
+        usd_transactions = transaction_descriptions(transactions6)
     except TypeError:
         print("Гони аргументы")
 
     try:
         for _ in range(6):
             print(next(usd_transactions))
-
     except StopIteration:
         print("Словари закончились")
-
     except TypeError:
         print("Гони аргумент")
-
     except NameError:
         print("Ошибочка")

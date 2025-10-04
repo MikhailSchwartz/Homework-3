@@ -220,8 +220,20 @@ def epty_transaction_list() -> list:
 
 
 @pytest.fixture()
-def normal_result_filter_by_currency_usd() -> list:
-    """Фикстура с результатом работы функции при вводе корректных данных и типом валюты USD"""
+def wrong_translation_list() -> list:
+    """Фикстура с некорректными данными в списке"""
+    return ["1", "2", "3"]
+
+
+@pytest.fixture()
+def wrong_translation_tuple() -> tuple:
+    """Фикстура с некорректным типом данных"""
+    return (1, 2, 3)
+
+
+@pytest.fixture()
+def normal_result_filter_transaction_usd() -> list:
+    """Фикстура с результатом работы функции filter_by_currency при вводе корректных данных и типом валюты USD"""
     return [
         {
             "id": 939719570,
@@ -254,8 +266,8 @@ def normal_result_filter_by_currency_usd() -> list:
 
 
 @pytest.fixture()
-def normal_result_filter_by_currency_rub() -> list:
-    """Фикстура с результатом работы функции при вводе корректных данных и типом валюты RUB"""
+def normal_result_filter_transaction_rub() -> list:
+    """Фикстура с результатом работы функции filter_by_currency при вводе корректных данных и типом валюты RUB"""
     return [
         {
             "id": 873106923,
@@ -279,8 +291,8 @@ def normal_result_filter_by_currency_rub() -> list:
 
 
 @pytest.fixture()
-def defective_result_filter_by_currency_usd() -> list:
-    """Фикстура с результатом работы функции при вводе неполных данных и типом валюты USD"""
+def defective_result_filter_transaction_usd() -> list:
+    """Фикстура с результатом работы функции filter_by_currency при вводе неполных данных и типом валюты USD"""
     return [
         {
             "id": 939719570,
