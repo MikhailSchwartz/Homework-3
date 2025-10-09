@@ -23,24 +23,25 @@ def log(filename=None):
                         file.write(message + "\n")
                 else:
                     print(message)
-
+                raise
         return wrapper
 
     return decorator
 
-
-if __name__ == "__main__":
-#     @log(filename="mylog.txt")
-#     def my_function(x, y):
-#         return x - y
 #
-#     my_function(10, 0)
+# if __name__ == "__main__":
+# #     @log(filename="mylog.txt")
+# #     def my_function(x, y):
+# #         return x - y
+# #
+# #     my_function(10, 0)
+#
+#
+#     @log()
+#     def function(x, y):
+#         """Деление X на Y"""
+#         return x / y
+#
+#
+#     function(10, 0)
 
-
-    @log()
-    def function(x, y):
-        """Деление X на Y"""
-        return x / y
-
-
-    function(10, 0)
