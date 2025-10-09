@@ -1,0 +1,9 @@
+my_function error: TypeError. Inputs: ('s', 2), {}
+my_function ok
+my_function ok
+my_function error: TypeError. Inputs: ('s', 2), {}
+my_function error: TypeError. Inputs: ('s', 2), {}
+my_function error: ZeroDivisionError. Inputs: (10, 0), {}
+my_function ok
+my_function ok
+my_function error: TypeError. Inputs: ('ы', 2), {}
