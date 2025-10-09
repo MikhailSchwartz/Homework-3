@@ -2,26 +2,28 @@ import pytest
 from src.decorators import log
 
 
-def test_log_to_file_success():
+def test_log_to_file() -> None:
     """Тест успешного выполнения с записью в файл"""
     test_filename = "log.txt"
 
+    open(test_filename, 'w').close()
+
     @log(filename=test_filename)
-    def add(a, b):
+    def add(a: int, b: int) -> int:
         return a + b
 
-    add(2,5)
+    add(2, 5)
 
     with open(test_filename, 'r') as file:
         content = file.read()
         assert "add ok" in content
 
 
-def test_log_to_console_success(capsys):
+def test_log_to_console(capsys) -> None:
     """Тест успешного выполнения с выводом в консоль"""
 
     @log()
-    def multiply(a, b):
+    def multiply(a: int, b: int) -> int:
         return a * b
 
     multiply(4, 5)
@@ -31,12 +33,14 @@ def test_log_to_console_success(capsys):
     assert "multiply ok" in captured.out
 
 
-def test_log_to_file_error():
+def test_log_to_file_error() -> None:
     """Тест ошибки с записью в файл"""
     test_filename = "log.txt"
 
+    open(test_filename, 'w').close()
+
     @log(filename=test_filename)
-    def divide(a, b):
+    def divide(a: int, b: int) -> float:
         return a / b
 
     with pytest.raises(ZeroDivisionError):
@@ -44,23 +48,18 @@ def test_log_to_file_error():
 
     with open(test_filename, 'r') as file:
         content = file.read()
-        assert "divide error" in content
-        assert "ZeroDivisionError" in content
-        assert "Inputs: (10, 0)" in content
+        assert content == "divide error: ZeroDivisionError. Inputs: (10, 0), {}\n"
 
 
-def test_log_to_console_error(capsys):
+def test_log_to_console_error(capsys) -> None:
     """Тест ошибки с выводом в консоль"""
 
     @log()
-    def string_divide(a, b):
+    def subtraction(a: int, b: int) -> float:
         return a / b
 
     with pytest.raises(TypeError):
-        string_divide("10", 2)
+        subtraction("ы", 2)
 
     captured = capsys.readouterr()
-    assert "string_divide error" in captured.out
-    assert "TypeError" in captured.out
-    assert "Inputs: ('10', 2)" in captured.out
-
+    assert captured.out == "subtraction error: TypeError. Inputs: ('ы', 2), {}\n"

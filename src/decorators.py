@@ -1,7 +1,7 @@
 from functools import wraps
 
 
-def log(filename=None):
+def log(filename: str | None = None):
     def decorator(func):
         @wraps(func)
         def wrapper(*args, **kwargs):
@@ -24,17 +24,19 @@ def log(filename=None):
                 else:
                     print(message)
                 raise
+
         return wrapper
 
     return decorator
 
-#
+
 # if __name__ == "__main__":
-# #     @log(filename="mylog.txt")
-# #     def my_function(x, y):
-# #         return x - y
-# #
-# #     my_function(10, 0)
+#     @log(filename="mylog.txt")
+#     def my_function(x, y):
+#         """Вычитание"""
+#         return x - y
+#
+#     my_function("ы", 2)
 #
 #
 #     @log()
@@ -44,4 +46,3 @@ def log(filename=None):
 #
 #
 #     function(10, 0)
-
