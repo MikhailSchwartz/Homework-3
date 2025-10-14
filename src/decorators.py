@@ -3,6 +3,7 @@ from functools import wraps
 
 def log(filename: str | None = None):
     """Декоратор с параметрами для логирования функций"""
+
     def decorator(func):
         @wraps(func)
         def wrapper(*args, **kwargs):
