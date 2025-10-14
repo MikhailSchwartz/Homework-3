@@ -1,5 +1,4 @@
 import json
-import os
 
 
 def transactions_load(path):
@@ -7,7 +6,7 @@ def transactions_load(path):
     Если файл не найден, пустой или не содержит список — возвращает пустой список."""
 
     try:
-        with open(path, encoding="utf-8") as f:
+        with open(path) as f:
             data = json.load(f)
         if type(data) == list and len(data) > 0:
             return data
@@ -20,4 +19,4 @@ def transactions_load(path):
 
 
 if __name__ == "__main__":
-    print(transactions_load("../data/jsonempty.json"))
+    print(transactions_load("../data/operations.json"))
