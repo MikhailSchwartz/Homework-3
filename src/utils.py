@@ -8,7 +8,7 @@ def transactions_load(path):
     try:
         with open(path) as f:
             data = json.load(f)
-        if type(data) == list and len(data) > 0:
+        if isinstance(data, list) and len(data) > 0:
             return data
         else:
             return []
@@ -18,5 +18,5 @@ def transactions_load(path):
         return []
 
 
-if __name__ == "__main__":
-    print(transactions_load("../data/operations.json"))
+# if __name__ == "__main__":
+#     print(transactions_load("../data/operations.json"))
