@@ -6,7 +6,7 @@ def test_log_to_file() -> None:
     """Тест успешного выполнения с записью в файл"""
     test_filename = "log.txt"
 
-    open(test_filename, 'w').close()
+    open(test_filename, "w").close()
 
     @log(filename=test_filename)
     def add(a: int, b: int) -> int:
@@ -14,7 +14,7 @@ def test_log_to_file() -> None:
 
     add(2, 5)
 
-    with open(test_filename, 'r') as file:
+    with open(test_filename, "r") as file:
         content = file.read()
         assert "add ok" in content
 
@@ -37,7 +37,7 @@ def test_log_to_file_error() -> None:
     """Тест ошибки с записью в файл"""
     test_filename = "log.txt"
 
-    open(test_filename, 'w').close()
+    open(test_filename, "w").close()
 
     @log(filename=test_filename)
     def divide(a: int, b: int) -> float:
@@ -46,7 +46,7 @@ def test_log_to_file_error() -> None:
     with pytest.raises(ZeroDivisionError):
         divide(10, 0)
 
-    with open(test_filename, 'r') as file:
+    with open(test_filename, "r") as file:
         content = file.read()
         assert content == "divide error: ZeroDivisionError. Inputs: (10, 0), {}\n"
 
