@@ -29,5 +29,5 @@ def convert_rub(amount: float, currency: str) -> float | str:
         return f"Ошибка HTTP: {type(e)}"
 
 
-if __name__ == "__main__":
-    print(convert_rub(100.0, "RUB"))
+# if __name__ == "__main__":
+#     print(convert_rub(100.0, "RUB"))
