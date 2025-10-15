@@ -1,10 +1,12 @@
+from unittest.mock import Mock, patch
+
 import requests
-from unittest.mock import patch, Mock
+
 from src.external_api import convert_rub
 
 
 @patch("src.external_api.requests.get")
-def test_convert_rub_success(mock_get):
+def test_convert_rub_success(mock_get) -> None:
     """Тестирует функцию convert_rub, успешную конвертацию USD -> RUB валюты через API"""
     mock_response = Mock()
     mock_response.status_code = 200
@@ -16,7 +18,7 @@ def test_convert_rub_success(mock_get):
 
 
 @patch("src.external_api.requests.get")
-def test_convert_rub_rub(mock_get):
+def test_convert_rub_rub(mock_get) -> None:
     """Тестирует функцию convert_rub, успешную конвертацию RUB -> RUB валюты через API"""
     mock_response = Mock()
     mock_response.status_code = 200
@@ -28,7 +30,7 @@ def test_convert_rub_rub(mock_get):
 
 
 @patch("src.external_api.requests.get")
-def test_convert_rub_api_error(mock_get):
+def test_convert_rub_api_error(mock_get) -> None:
     """Тестирует функцию convert_rub с ошибкой 404"""
     mock_response = Mock()
     mock_response.status_code = 404
@@ -39,7 +41,7 @@ def test_convert_rub_api_error(mock_get):
 
 
 @patch("src.external_api.requests.get")
-def test_convert_rub_conversion_error(mock_get):
+def test_convert_rub_conversion_error(mock_get) -> None:
     """Тестирует функцию convert_rub со статусом success = False"""
     mock_response = Mock()
     mock_response.status_code = 200
@@ -51,7 +53,7 @@ def test_convert_rub_conversion_error(mock_get):
 
 
 @patch("src.external_api.requests.get")
-def test_convert_rub_http_exception(mock_get):
+def test_convert_rub_http_exception(mock_get) -> None:
     """Тестирует функцию convert_rub с ошибкой HTTP"""
     mock_get.side_effect = requests.exceptions.RequestException("Network failure")
 

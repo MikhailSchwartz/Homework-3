@@ -1,7 +1,7 @@
 import json
 
 
-def transactions_load(path):
+def transactions_load(path: str) -> list:
     """Загружает данные о финансовых транзакциях из JSON-файла.
     Если файл не найден, пустой или не содержит список — возвращает пустой список."""
 
