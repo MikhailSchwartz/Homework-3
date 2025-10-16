@@ -53,7 +53,7 @@ def get_date(data_and_time: str) -> str:
     raise ValueError("Некорректная дата")
 
 
-if __name__ == "__main__":
-    print(mask_account_card("Visa Platinum 7000 7922 8960 6000"))
-    print(mask_account_card("счёт 44444"))
-    print(get_date("2024-12-31T02:26:18.671407"))
+# if __name__ == "__main__":
+#     print(mask_account_card("Visa Platinum 7000 7922 8960 6000"))
+#     print(mask_account_card("счёт 44444"))
+#     print(get_date("2024-12-31T02:26:18.671407"))
