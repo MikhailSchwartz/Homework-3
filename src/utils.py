@@ -6,7 +6,7 @@ def transactions_load(path: str) -> list:
     Если файл не найден, пустой или не содержит список — возвращает пустой список."""
 
     try:
-        with open(path) as f:
+        with open(path, encoding='utf-8') as f:
             data = json.load(f)
         if isinstance(data, list) and len(data) > 0:
             return data
