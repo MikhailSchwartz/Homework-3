@@ -1,3 +1,15 @@
+
+import logging
+
+logger = logging.getLogger(__name__)
+file_handler = logging.FileHandler('logs/example.log', mode='w')
+file_formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+file_handler.setFormatter(file_formatter)
+logger.addHandler(file_handler)
+logger.setLevel(logging.DEBUG)
+
+
+
 def get_mask_card_number(card_number: str | int) -> str:
     """Функция принимает на вход номер карты в формате "73654108430135874305"
     и возвращает ее маску XXXX XX** **** XXXX где X цифра"""
