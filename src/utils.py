@@ -2,7 +2,7 @@ import json
 import logging
 
 logger = logging.getLogger("utils")
-file_handler = logging.FileHandler("../logs/logs.log", mode="w", encoding="utf-8")
+file_handler = logging.FileHandler("../logs/logs_utils.log", mode="w", encoding="utf-8")
 file_formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
 file_handler.setFormatter(file_formatter)
 logger.addHandler(file_handler)
